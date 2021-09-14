@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" th:lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<head th:replace="admin/common/layout :: admin-header-link"></head>
+
+<body>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<!-- Top Bar Start -->
+		<div class="topbar"
+			th:replace="admin/common/layout :: admin-navbar"></div>
+		<!-- Top Bar End -->
+		<!-- ========== Left Sidebar Start ========== -->
+		<div class="left side-menu"
+			th:replace="admin/common/layout :: admin-sidebar"></div>
+		<!-- Left Sidebar End -->
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<!-- ============================================================== -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+				<form id="insert" 
+					enctype="multipart/form-data" method="POST">
+					<div class="container-fluid">
+
+						<div class="row">
+							<div class="col-md-12 form-group mb-3">
+								<h4>Update Profile</h4>
+								<hr>
+							</div>
+						</div>
+						
+						<div  class="card" style="padding-left:300px;">
+					
+							<div class="col-md-6 form-group mb-3 mt-3 text-center">
+								
+								 <img  th:if="${profileImage}" id="img" th:src="@{/admin/uploads/adminProfile/{profileImage}(profileImage=${profileImage})}" width="100" height="100" alt="NA" class="rounded-circle"/>
+								 <img  th:unless="${profileImage}" id="img" th:src="@{/admin/uploads/adminProfile/}" width="100" height="100" alt="NA" class="rounded-circle"/>
+								 
+							
+							</div>
+							
+							<div class="col-md-6 form-group mb-3 " >
+								<label for="profileImage">Profile Image</label> <input
+									class="form-control form-control-rounded" name="profileImage" id="profileImage"
+									type="file"
+									accept=".jpg, .jpeg, .png" />
+							</div>
+					
+						<input type="hidden" th:value="${id}" name="id" id="id">
+							<div class="col-md-6 form-group mb-3">
+								<label for="shopName">Name</label>
+								 <input
+									class="form-control form-control-rounded" name="name" id="name"
+									type="text"  pattern="[a-zA-Z0-9\s]+" title="only alphabets ,number and space allowed"  th:value="${name}" />
+							</div>
+				
+							<div class="col-md-6 form-group mb-3">
+								<label for="vendorEmail">Email</label>
+								 <input 
+									class="form-control form-control-rounded" name="email" id="email"
+									type="text" pattern="[a-zA-Z0-9]{1}[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" th:value="${email}" title="Email pattern is incorrect" readonly="readonly"  required />
+							</div>
+<!-- 							<div class="col-md-6 form-group mb-3"> -->
+<!-- 								<label for="vendorContact">Contact</label> -->
+<!-- 								 <input -->
+<!-- 									class="form-control form-control-rounded" name="mobile" id="mobile" -->
+<!-- 									type="text"  pattern="[6-9]{1}[0-9]{9}"  th:value="${mobile}" title="contact number must start from 6-9 and 10 digit" maxlength="10" readonly required /> -->
+<!-- 							</div> -->
+							
+							
+							
+							<div class="col-md-6 form-group mt-3 text-center">
+								<input class="btn btn-primary ml-2 submit" type="submit"
+									value="Update">
+							</div>
+
+						</div>
+						</div>
+						</form>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="admin/common/layout :: admin-footer-link"></div>
+	<script type="text/javascript">
+		$('document').ready(function() {
+			
+		});
+
+		$("#profileImage").change(function(){
+			if (this.files && this.files[0]) {
+			    var reader = new FileReader();
+			    reader.onload = function(e) {
+			      $('#img').attr("src", e.target.result); 
+			    };
+			    reader.readAsDataURL(this.files[0]);
+			  }
+		});
+		
+		
+		$(document).on('submit', '#insert', function(e) {
+	        e.preventDefault();
+	       
+	       
+	        $.ajax({
+	            type: "ajax",
+	            method: "POST",
+	            url: "/admin/update-admin-profile",
+	            data: new FormData(this),
+	            processData: false,
+	            contentType: false,
+	            cache: false,
+	            beforeSend: function() {
+	                $(".submit").prop('disabled', true);
+	            },
+
+	            success: function(data) {
+	            	$(".submit").prop('disabled', false);
+	            	if(data.status != "False")
+	            	{
+	            		alert("Profile Updated")
+	            		window.location = "/admin/dashboard";
+	            	}
+	            	
+	           	
+	            },
+	            error: function() {
+	                alert('could not insert');
+	            }
+	        });
+	    });
+
+		
+		</script>
+</body>
+
+</html>
