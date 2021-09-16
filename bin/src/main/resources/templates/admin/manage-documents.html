@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" th:lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<head th:replace="admin/common/layout :: admin-header-link"></head>
+<style>
+a {
+    color: #32CD32;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 15px;
+}
+</style>
+<body>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<!-- Top Bar Start -->
+		<div class="topbar" th:replace="admin/common/layout :: admin-navbar"></div>
+		<!-- Top Bar End -->
+		<!-- ========== Left Sidebar Start ========== -->
+		<div class="left side-menu"
+			th:replace="admin/common/layout :: admin-sidebar"></div>
+		<!-- Left Sidebar End -->
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<!-- ============================================================== -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-12">
+							<!-- test -->
+							<div class="page-title-box">
+								<div class="card m-b-20">
+									<div class="card-body">
+										<div class="row ">
+											<div class="col-md-12 m-b-15">
+												<h4 class="mt-0 header-title">
+													<!-- Project Details -->
+													<button class="btn btn-primary btn-md m-1 edit" id="getdata" type="button"
+														data-toggle="modal" data-target="#editModal1"
+														style="float: right;">Update Document</button>
+
+												</h4>
+											</div>
+											<div class="container">
+											<div class="row">
+											<div class="col-md-4">
+											<h4 id="textid">Internship</h4><br>
+											
+<a th:if="${document.internOfferLetter==''}"></a>
+<a th:if="${document.internOfferLetter!=''}" th:href="@{'/uploads/documents/'+${document.internOfferLetter}}" target="_blank">Intern Offer Letter</a><br>
+<a th:if="${document.internProjectCompletion==''}"></a>
+<a th:if="${document.internProjectCompletion!=''}" th:href="@{'/uploads/documents/'+${document.internProjectCompletion}}" target="_blank">Intern Project Completion</a><br>
+<a th:if="${document.internRecommendation==''}"></a>
+<a th:if="${document.internRecommendation!=''}" th:href="@{'/uploads/documents/'+${document.internRecommendation}}" target="_blank">Intern Recommendation</a>
+											
+											</div>
+											<div class="col-md-4 vl">
+											<h4 id="textid">Employee</h4><br>
+<a th:if="${document.employeeOffer==''}"></a>
+<a th:if="${document.employeeOffer!=''}" th:href="@{'/uploads/documents/'+${document.employeeOffer}}" target="_blank">Employee Offer</a><br>
+ 
+<a th:if="${document.employeeAppointment==''}"></a>
+<a th:if="${document.employeeAppointment!=''}" th:href="@{'/uploads/documents/'+${document.employeeAppointment}}" target="_blank">Employee Appointment</a><br>
+
+<a th:if="${document.employeeAppraisal==''}"></a>
+<a th:if="${document.employeeAppraisal!=''}" th:href="@{'/uploads/documents/'+${document.employeeAppraisal}}" target="_blank">Employee Appraisal</a><br>
+
+<a th:if="${document.employeePromotion==''}"></a>
+<a th:if="${document.employeePromotion!=''}" th:href="@{'/uploads/documents/'+${document.employeePromotion}}" target="_blank">Employee Promotion</a><br>
+
+<a th:if="${document.employeeTermination==''}"></a>
+<a th:if="${document.employeeTermination!=''}" th:href="@{'/uploads/documents/'+${document.employeeTermination}}" target="_blank">Employee Termination</a> <br>
+
+<a th:if="${document.employeeNotice==''}"></a>
+<a th:if="${document.employeeNotice!=''}" th:href="@{'/uploads/documents/'+${document.employeeNotice}}" target="_blank">Employee Notice</a><br>
+
+<a th:if="${document.employeeNondisclosure==''}"></a>
+<a th:if="${document.employeeNondisclosure!=''}" th:href="@{'/uploads/documents/'+${document.employeeNondisclosure}}" target="_blank">Employee Nondisclosure</a> <br>
+
+<a th:if="${document.employeeVerification==''}"></a>
+<a th:if="${document.employeeVerification!=''}" th:href="@{'/uploads/documents/'+${document.employeeVerification}}" target="_blank">Employee Verification</a>
+											
+											</div>
+											<div class="col-md-4 vl">
+											<h4 id="textid">Legal</h4><br>
+<a th:if="${document.legalInvoice==''}"></a>
+<a th:if="${document.legalInvoice!=''}" th:href="@{'/uploads/documents/'+${document.legalInvoice}}" target="_blank">Legal Invoice</a><br>
+<a th:if="${document.legalQuotation==''}"></a>
+<a th:if="${document.legalQuotation!=''}" th:href="@{'/uploads/documents/'+${document.legalQuotation}}" target="_blank">Legal Quotation</a><br>
+											
+											</div>
+											</div>
+											
+											
+											</div>
+										
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="modal fade " id="editModal1" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div
+							class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalCenterTitle">Update Documents</h5>
+									<button class="close" type="button" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form id="update">
+										<div class="row">
+										<div class="col-md-12 text-center"><h5>Internship</h5></div>
+										<input type="hidden" name="id" th:value="${document.id}"/>
+										
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName">Intern offer letter
+												</label> <input
+													class="form-control form-control-rounded"
+													name="internOfferLetter" type="file" th:value="${document.internOfferLetter}" accept=".pdf"/>
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> Intern project completion</label> <input
+													class="form-control form-control-rounded"
+													name="internProjectCompletion" type="file" th:value="${document.internProjectCompletion}" accept=".pdf" />
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> Intern recommendation</label> <input
+													class="form-control form-control-rounded" name="internRecommendation"
+													type="file" th:value="${document.internRecommendation}" accept=".pdf" />
+											</div>
+											<div class="col-md-6 form-group mb-3"></div>
+										<div class="col-md-12 text-center"><h5>Employee</h5></div>
+											
+											<div class="col-md-6 form-group mb-3">
+												<label for="status"> Employee offer</label> <input
+													class="form-control form-control-rounded" name="employeeOffer" type="file" th:value="${document.employeeOffer}" accept=".pdf" />
+													
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> Employee appointment</label> <input
+													class="form-control form-control-rounded"
+													name="employeeAppointment" type="file" th:value="${document.employeeAppointment}" accept=".pdf"/>
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> Employee appraisal</label> <input
+													class="form-control form-control-rounded"
+													id="selectProjectCost" name="employeeAppraisal" type="file" th:value="${document.employeeAppraisal}" accept=".pdf" />
+											</div>
+
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName">Employee promotion</label> <input
+													class="form-control form-control-rounded"
+													id="selectGstAmount" name="employeePromotion" type="file" th:value="${document.employeePromotion}" accept=".pdf"/>
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName">Employee termination</label> <input
+													class="form-control form-control-rounded"
+													 id="selectTotalPrice" name="employeeTermination"
+													type="file" th:value="${document.employeeTermination}" accept=".pdf" />
+											</div>
+
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName">Employee notice</label> <input
+													class="form-control form-control-rounded" name="employeeNotice"
+													type="file"  th:value="${document.employeeNotice}" accept=".pdf" />
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> Employee nondisclosure</label> <input
+													class="form-control form-control-rounded"
+													name="employeeNondisclosure" type="file" th:value="${document.employeeNondisclosure}" accept=".pdf"/>
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName">Employee verification</label> <input
+													class="form-control form-control-rounded"
+													name="employeeVerification" type="file" th:value="${document.employeeVerification}" accept=".pdf" />
+											</div>
+										<div class="col-md-12 text-center"><h5>Legal</h5></div>
+
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> Legal invoice</label> <input
+													class="form-control form-control-rounded" name="legalInvoice"
+													type="file" th:value="${document.legalInvoice}" accept=".pdf"/>
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> Legal quotation</label> <input
+													class="form-control form-control-rounded" name="legalQuotation"
+													type="file" th:value="${document.legalQuotation}" accept=".pdf" />
+											</div>
+											<div class="col-md-12 modal-footer mt-3">
+												<button class="btn btn-secondary" type="button"
+													data-dismiss="modal">Close</button>
+												<input class="btn btn-primary ml-2 submit" type="submit"
+													value="Submit">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="admin/common/layout :: admin-footer-link"></div>
+	<script type="text/javascript">
+		
+		$(document).on('submit', '#update', function(e) {
+
+			e.preventDefault();
+
+			$.ajax({
+				url : "/save-document",
+				method : 'POST',
+				data : new FormData(this),
+				contentType : false,
+				processData : false,
+				cache : false,
+				beforeSend : function() {
+
+					$(".submit").prop('disabled', true);
+				},
+
+				success : function(data) {
+					$(".submit").prop('disabled', false);
+					$('#update')[0].reset();
+					$('#editModal1').modal('hide');
+
+					window.location='manage-documents';
+				},
+				error : function() {
+					/*alert('could not insert');*/
+				}
+			});
+
+		});
+
+	</script>
+</body>
+
+</html>

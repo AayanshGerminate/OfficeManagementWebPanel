@@ -59,6 +59,14 @@ body {
   color: #5b626b;
   font-size: 13px;
 }
+.vl {
+  border-left: 1px solid black;
+  height: auto;
+}
+#textid {
+  font-weight: bold;
+  color: black;
+}
 
 html {
   overflow-x: hidden;
