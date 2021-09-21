@@ -122,9 +122,15 @@
 													type="text" required />
 											</div>
 											<div class="col-md-3 form-group mb-3">
-												<label for="stateName">Designation</label> <input
-													class="form-control form-control-rounded"
-													name="designstion" type="text" required />
+												<label for="stateName">Designation</label> <select
+													class="form-control form-control-rounded" name="designation">
+													<option value="">Select Designation</option>
+													<option value="Super Admin">SuperAdmin</option>
+													<option value="Admin">Admin</option>
+													<option value="Marketting">Marketing</option>
+													<option value="Developer">Developer</option>
+												</select>
+
 											</div>
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Joining Date</label> <input
@@ -172,14 +178,14 @@
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Appointment Letter</label> <input
 													class="form-control form-control-rounded"
-													name="appointmentLetter" type="file" accept=""  />
+													name="appointmentLetter" type="file" accept="application/pdf"  />
 											</div>
 											
 											
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Offer Letter</label> <input
 													class="form-control form-control-rounded"
-													name="offerLetter" type="file" accept=""  />
+													name="offerLetter" type="file" accept="application/pdf"  />
 											</div>
 
 
@@ -188,52 +194,52 @@
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Promotion Letter</label> <input
 													class="form-control form-control-rounded"
-													name="promotionLetter" type="file" accept=""  />
+													name="promotionLetter" type="file" accept="application/pdf"  />
 											</div>
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">NDA Letter</label> <input
 													class="form-control form-control-rounded" name="ndaLetter"
-													type="file" accept=""  />
+													type="file" accept="application/pdf" />
 											</div>
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Termination Letter</label> <input
 													class="form-control form-control-rounded"
-													name="designstion" type="file"  />
+													name="terminationLetter" type="file" accept="application/pdf"  />
 											</div>
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Background Verification
 													Letter</label> <input class="form-control form-control-rounded"
-													name="backGroundVerificationLetter" type="file"  />
+													name="backGroundVerificationLetter" type="file" accept="application/pdf"  />
 											</div>
 
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">SSC Certificate</label> <input
 													class="form-control form-control-rounded"
-													name="sscCertificate" type="file"  />
+													name="sscCertificate" type="file" accept="application/pdf"  />
 											</div>
 
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">HSC Certificate</label> <input
 													class="form-control form-control-rounded"
-													name="hscCertificate" type="file"  />
+													name="hscCertificate" type="file" accept="application/pdf" />
 											</div>
 
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Graduation Certificate</label> <input
 													class="form-control form-control-rounded"
-													name="graduationCertificate" type="file"  />
+													name="graduationCertificate" type="file" accept="application/pdf" />
 											</div>
 
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Post Graduation Certificate</label> <input
 													class="form-control form-control-rounded"
-													name="postGraduationCertificate" type="file"  />
+													name="postGraduationCertificate" type="file" accept="application/pdf" />
 											</div>
 
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">PAN Card</label> <input
 													class="form-control form-control-rounded" name="panCard"
-													type="file"  />
+													type="file" accept="application/pdf" />
 											</div>
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Adhar Card</label> <input
@@ -279,26 +285,34 @@
 								<div class="modal-body">
 									<form id="update">
 										<div class="row">
+																				<input type="hidden" name="password" id="password">
+										
 										<input type="hidden" name="id" id="employeeId">
-											<div class="col-md-4 form-group mb-3">
+											<div class="col-md-3 form-group mb-3">
 												<label for="stateName"> Employee Name</label> <input
 													class="form-control form-control-rounded" name="name"
 													type="text" id="name" pattern="[a-zA-Z]{1}[a-zA-Z ]*$" required />
 											</div>
-											<div class="col-md-4 form-group mb-3">
+											<div class="col-md-3 form-group mb-3">
 												<label for="stateName"> Email</label> <input
 													class="form-control form-control-rounded" id="email" name="email"
 													type="text" required />
 											</div>
-											<div class="col-md-4 form-group mb-3">
+											<div class="col-md-3 form-group mb-3">
 												<label for="stateName"> Mobile Number</label> <input
 													class="form-control form-control-rounded" id="phone" name="phone"
 													type="text" required />
 											</div>
 											<div class="col-md-3 form-group mb-3">
-												<label for="stateName">Designation</label> <input
-													class="form-control form-control-rounded" id="designation"
-													name="designstion" type="text" required />
+												<label for="stateName">Designation</label> <select
+													class="form-control form-control-rounded" id="designation" name="designation">
+													<option value="">Select Designation</option>
+													<option value="Super Admin">SuperAdmin</option>
+													<option value="Admin">Admin</option>
+													<option value="Marketting">Marketing</option>
+													<option value="Developer">Developer</option>
+												</select>
+
 											</div>
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Joining Date</label> <input
@@ -344,6 +358,11 @@
 													name="profileImage" type="file" accept="image/*"  />
 											</div>
 											<div class="col-md-3 form-group mb-3">
+												<label for="stateName">Appointment Letter</label> <input
+													class="form-control form-control-rounded"
+													name="appointmentLetter"  type="file" accept="application/pdf"  />
+											</div>
+											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Offer Letter</label> <input
 													class="form-control form-control-rounded"
 													name="offerLetter" type="file" accept=""  />
@@ -352,62 +371,62 @@
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Promotion Letter</label> <input
 													class="form-control form-control-rounded"
-													name="promotionLetter" type="file" accept=""  />
+													name="promotionLetter" type="file" accept="application/pdf"  />
 											</div>
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">NDA Letter</label> <input
 													class="form-control form-control-rounded" name="ndaLetter"
-													type="file" accept=""  />
+													type="file" accept="application/pdf"  />
 											</div>
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Termination Letter</label> <input
 													class="form-control form-control-rounded"
-													name="designstion" type="file"  />
+													name="terminationLetter" type="file" accept="application/pdf"  />
 											</div>
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Background Verification
 													Letter</label> <input class="form-control form-control-rounded"
-													name="backGroundVerificationLetter" type="file"  />
+													name="backGroundVerificationLetter" type="file" accept="application/pdf" />
 											</div>
 
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">SSC Certificate</label> <input
 													class="form-control form-control-rounded"
-													name="sscCertificate" type="file"  />
+													name="sscCertificate" type="file" accept="application/pdf" />
 											</div>
 
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">HSC Certificate</label> <input
 													class="form-control form-control-rounded"
-													name="hscCertificate" type="file"  />
+													name="hscCertificate" type="file" accept="application/pdf" />
 											</div>
 
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Graduation Certificate</label> <input
 													class="form-control form-control-rounded"
-													name="graduationCertificate" type="file"  />
+													name="graduationCertificate" type="file"accept="application/pdf" />
 											</div>
 
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Post Graduation Certificate</label> <input
 													class="form-control form-control-rounded"
-													name="postGraduationCertificate" type="file"  />
+													name="postGraduationCertificate" type="file" accept="application/pdf" />
 											</div>
 
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">PAN Card</label> <input
 													class="form-control form-control-rounded" name="panCard"
-													type="file"  />
+													type="file" accept="application/pdf" />
 											</div>
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Adhar Card</label> <input
 													class="form-control form-control-rounded" name="adharCard"
-													type="file"  />
+													type="file" accept="application/pdf" />
 											</div>
 											<div class="col-md-3 form-group mb-3">
 												<label for="stateName">Passport</label> <input
 													class="form-control form-control-rounded" name="passport"
-													type="file"  />
+													type="file" accept="application/pdf" />
 											</div>
 											<div class="col-md-12 form-group mb-3">
 												<label for="stateName">Address</label>
@@ -713,23 +732,21 @@
 				dataType : 'json',
 				success : function(data) {
 
-					$('input[id=projectId]').val(data.id);
-					$('input[id=projectName]').val(data.projectName);
-					$('input[id=projectUrl]').val(data.projectUrl);
-					$('input[id=startDate]').val(data.startDate);
-					$('input[id=endDate]').val(data.endDate);
+	$('input[id=employeeId]').val(data.id);
+					
+					$('input[id=password]').val(data.password);
+					$('input[id=name]').val(data.name);
+					$('input[id=email]').val(data.email);
+					$('input[id=phone]').val(data.phone);
+					$('select[id=designation]').val(data.designation);
 					$('select[id=status]').val(data.status);
-					$('input[id=renewalDate]').val(data.renewalDate);
-					$('input[id=endDate]').val(data.endDate);
-					$('input[id=projectCost]').val(data.projectCost);
-					$('input[id=gstAmount]').val(data.gstAmount);
-					$('input[id=totalPrice]').val(data.totalPrice);
-					$('input[id=paidAmount]').val(data.paidAmount);
-					$('input[id=remainingAmount]').val(data.remainingAmount);
-					$('input[id=serviceCharge]').val(data.serviceCharge);
-					$('input[id=clientName]').val(data.clientName);
-					$('textarea[id=description]').val(data.description);
-
+					$('input[id=joiningDate]').val(data.joiningDate);
+					$('input[id=birthDate]').val(data.birthDate);
+					$('input[id=accountNumber]').val(data.accountNumber);
+					$('input[id=ifscCode]').val(data.ifscCode);
+					$('input[id=branch]').val(data.branch);
+					
+					$('textarea[id=address]').val(data.address);
 				},
 				error : function() {
 					alert('Could not Edit Data');

@@ -22,12 +22,12 @@ public class ProjectController {
 	@Autowired
 	ProjectService projectService;
 
-	@RequestMapping("/admin/manage-project")
+	@RequestMapping("/manage-project")
 	public String fetchBookProjects(Model model, HttpSession session) {
 		if (session.getAttribute("sign-in-user") != null) {
 			return "admin/manage-project";
 		}
-		return "redirect:/admin/sign-in";
+		return "redirect:/sign-in";
 
 	}
 

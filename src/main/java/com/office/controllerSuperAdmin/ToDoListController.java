@@ -22,12 +22,12 @@ public class ToDoListController {
 	@Autowired
 	ToDoListService toDoListService;
 
-	@RequestMapping("/admin/manage-todo-list")
+	@RequestMapping("/manage-todo-list")
 	public String fetchBookProjects(Model model, HttpSession session) {
 		if (session.getAttribute("sign-in-user") != null) {
 			return "admin/manage-todo-list";
 		}
-		return "redirect:/admin/sign-in";
+		return "redirect:/sign-in";
 
 	}
 

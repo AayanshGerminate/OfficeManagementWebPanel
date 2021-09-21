@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" th:lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<head th:replace="admin/common/layout :: admin-header-link"></head>
+
+<body>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<!-- Top Bar Start -->
+		<div class="topbar" th:replace="admin/common/layout :: admin-navbar"></div>
+		<!-- Top Bar End -->
+		<!-- ========== Left Sidebar Start ========== -->
+		<div class="left side-menu"
+			th:replace="admin/common/layout :: admin-sidebar"></div>
+		<!-- Left Sidebar End -->
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<!-- ============================================================== -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-12">
+							<!-- test -->
+							<div class="page-title-box">
+								<div class="card m-b-20">
+									<div class="card-body">
+										<div class="row ">
+											<div class="col-md-12 m-b-15">
+												<h4 class="mt-0 header-title">
+													Project Details
+													<a class="btn btn-primary btn-md m-1" 
+														th:href="@{/manage-intern-income}"
+														style="float:right;">Interns</a>
+
+												</h4>
+											</div>
+											<div class="col-md-12 table-responsive">
+
+												<table class=" table table-striped dt-responsive nowrap"
+													id="datatable-buttons"
+													style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+													<thead>
+														<tr>
+
+														
+															<!--                                                             <th>Activity Status</th>                                                       -->
+															<th>Project Name</th>
+															<th>Project Url</th>
+															<th>Project Duration</th>
+															<th>Project Status</th>
+															<th>Project Renewal Date</th>
+															<th>Cost</th>
+															<th>GST Amount</th>
+															<th>Total Cost</th>
+															<th>Paid Amount</th>
+															<th>Remaining Amount</th>
+															<th>Service Charge</th>
+															<th>Client Name</th>
+
+															<th>Updated Date</th>
+
+															<!-- <th>Country Name</th> -->
+
+
+														</tr>
+													</thead>
+													<tbody id="showData">
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="admin/common/layout :: admin-footer-link"></div>
+	<script type="text/javascript">
+		$('document').ready(function() {
+			showAllProjectList();
+		});
+
+		function showAllProjectList() {
+			$('#datatable-buttons').DataTable().destroy();
+			$
+					.ajax({
+
+						type : "ajax",
+						dataType : 'json',
+						url : "/fetch-all-project-list",
+						method : 'GET',
+						async : false,
+						dataType : 'json',
+						success : function(data) {
+
+							var html = '';
+							var i;
+							for (i = 0; i < data.length; i++) {
+
+								var date = new Date(data[i].updatedDate);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var from = from_yyyy + '-' + from_mm + '-'
+										+ from_dd;
+								var from_hours = date.getHours() > 12 ? date
+										.getHours() - 12 : date.getHours();
+								var from_am_pm = date.getHours() >= 12 ? "PM"
+										: "AM";
+								hours = from_hours < 10 ? "0" + from_hours
+										: from_hours;
+								var from_minutes = date.getMinutes() < 10 ? "0"
+										+ date.getMinutes() : date.getMinutes();
+								var from_seconds = date.getSeconds() < 10 ? "0"
+										+ date.getSeconds() : date.getSeconds();
+								updatedDate = from_dd + '/' + from_mm + '/'
+										+ from_yyyy + ' ' + from_hours + ":"
+										+ from_minutes + " " + from_am_pm;
+
+								var date = new Date(data[i].startDate);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var fromDate = from_dd + '-' + from_mm + '-'
+										+ from_yyyy;
+
+								var date = new Date(data[i].endDate);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var toDate = from_dd + '-' + from_mm + '-'
+										+ from_yyyy;
+								var date = new Date(data[i].renewalDate);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var renewalDate = from_dd + '-' + from_mm + '-'
+										+ from_yyyy;
+
+								html += ' <tr>'
+										 +
+										//                         '<td>'+activityStatus+'</td>'+
+										'<td>'
+										+ data[i].projectName
+										+ '</td>'
+										+ '<td>'
+										+ data[i].projectUrl
+										+ '</td>'
+										+ '<td>'
+										+ fromDate
+										+ ' To '
+										+ toDate
+										+ '</td>'
+										+ '<td>'
+										+ data[i].status
+										+ '</td>'
+										+ '<td>'
+										+ renewalDate
+										+ '</td>'
+										+ '<td>'
+										+ data[i].projectCost
+										+ '</td>'
+										+ '<td>'
+										+ data[i].gstAmount
+										+ '</td>'
+										+ '<td>'
+										+ data[i].totalPrice
+										+ '</td>'
+										+ '<td>'
+										+ data[i].paidAmount
+										+ '</td>'
+										+ '<td>'
+										+ data[i].remainingAmount
+										+ '</td>'
+										+ '<td>'
+										+ data[i].serviceCharge
+										+ '</td>'
+										+ '<td>'
+										+ data[i].clientName
+										+ '</td>'
+										+ '<td>'
+										+ updatedDate
+										+ '</td>'
+										+ ' </tr>';
+
+							}
+							$('#showData').html(html);
+
+							$('#datatable-buttons')
+									.DataTable({
+										destroy : true,
+										lengthChange : false,
+										sort : [ 2, "asc" ],
+										buttons : [ 'copy', 'excel', 'colvis' ]
+									})
+									.buttons()
+									.container()
+									.appendTo(
+											'#datatable-buttons_wrapper .col-md-6:eq(0)');
+
+						},
+						error : function() {
+							alert('could not get data from database');
+						}
+					});
+		}
+
+	
+	</script>
+</body>
+
+</html>

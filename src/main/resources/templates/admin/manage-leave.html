@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" th:lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<head th:replace="admin/common/layout :: admin-header-link"></head>
+
+<body>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<!-- Top Bar Start -->
+		<div class="topbar" th:replace="admin/common/layout :: admin-navbar"></div>
+		<!-- Top Bar End -->
+		<!-- ========== Left Sidebar Start ========== -->
+		<div class="left side-menu"
+			th:replace="admin/common/layout :: admin-sidebar"></div>
+		<!-- Left Sidebar End -->
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<!-- ============================================================== -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-12">
+							<!-- test -->
+							<div class="page-title-box">
+								<div class="card m-b-20">
+									<div class="card-body">
+										<div class="row ">
+											<div class="col-md-12 m-b-15">
+												<h4 class="mt-0 header-title">
+													Leave Details
+													<button class="btn btn-primary btn-md m-1" type="button"
+														data-toggle="modal" data-target="#addModal"
+														style="float: right;">New Leave</button>
+
+												</h4>
+											</div>
+											<div class="col-md-12 table-responsive">
+
+												<table class=" table table-striped dt-responsive nowrap"
+													id="datatable-buttons"
+													style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+													<thead>
+														<tr>
+
+<!-- 															<th>Action</th> -->
+															<!--                                                             <th>Activity Status</th>                                                       -->
+															<th>Name</th>
+															<th>From</th>
+															<th>To</th>
+															<th>Department</th>
+															<th>Leave Reason</th>
+															
+
+															<!-- <th>Country Name</th> -->
+
+
+														</tr>
+													</thead>
+													<tbody id="showData">
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+					</div>
+					<div class="modal fade " id="addModal" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div
+							class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalCenterTitle">Add
+										Leave  Details</h5>
+									<button class="close" type="button" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form id="insert">
+										<div class="row">
+<!-- 											<div class="col-md-6 form-group mb-3"> -->
+<!-- 												<label for="stateName"> Name</label> <input -->
+<!-- 													class="form-control form-control-rounded" -->
+<!-- 													name="name" type="text" -->
+<!-- 													pattern="[a-zA-Z]{1}[a-zA-Z ]*$" -->
+<!-- 													title="only alphabets and spaces allowed" required /> -->
+<!-- 											</div> -->
+											<div class="col-md-12 form-group mb-3">
+												<label for="stateName"> Department</label> <input
+													class="form-control form-control-rounded"
+													name="department" type="text"
+													 required />
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> From Date</label> <input
+													class="form-control form-control-rounded" 
+													name="fromDate" type="date" required />
+											</div>
+											
+												<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> To Date</label> <input
+													class="form-control form-control-rounded" 
+													name="toDate" type="date" required />
+											</div>
+											
+									
+											<div class="col-md-12 form-group mb-3">
+												<label for="stateName">Leave Reason</label>
+												<textarea class="form-control form-control-rounded"
+													name="description" cols="4" rows="4" required></textarea>
+											</div>
+											<div class="col-md-12 modal-footer mt-3">
+												<button class="btn btn-secondary" type="button"
+													data-dismiss="modal">Close</button>
+												<input class="btn btn-primary ml-2 submit" type="submit"
+													value="Save">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade " id="editModal" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div
+							class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalCenterTitle">Edit
+										Lead Details</h5>
+									<button class="close" type="button" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form id="update">
+										<div class="row">
+											<input type="hidden" id="leaveId" name="id">
+
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> Name</label> <input
+													class="form-control form-control-rounded"
+													name="name" id="name" type="text"
+													pattern="[a-zA-Z]{1}[a-zA-Z ]*$"
+													title="only alphabets and spaces allowed" required />
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> Department</label> <input
+													class="form-control form-control-rounded"
+													name="department" id="department" type="text"
+													 required />
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> From Date</label> <input
+													class="form-control form-control-rounded" 
+													name="fromDate" id="fromDate" type="date" required />
+											</div>
+											
+												<div class="col-md-6 form-group mb-3">
+												<label for="stateName"> To Date</label> <input
+													class="form-control form-control-rounded" 
+													name="toDate" id="toDate" type="date" required />
+											</div>
+											
+									
+											<div class="col-md-12 form-group mb-3">
+												<label for="stateName">Description</label>
+												<textarea class="form-control form-control-rounded"
+													name="description" id="description" cols="4" rows="4" required></textarea>
+											</div>
+											<div class="col-md-12 modal-footer mt-3">
+												<button class="btn btn-secondary" type="button"
+													data-dismiss="modal">Close</button>
+												<input class="btn btn-primary ml-2 submit" type="submit"
+													value="Save">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="admin/common/layout :: admin-footer-link"></div>
+	<script type="text/javascript">
+		$('document').ready(function() {
+			showAllLeaveList();
+		});
+
+		function showAllLeaveList() {
+			$('#datatable-buttons').DataTable().destroy();
+			$
+					.ajax({
+
+						type : "ajax",
+						dataType : 'json',
+						url : "/fetch-all--employeeleave-list",
+						method : 'GET',
+						async : false,
+						dataType : 'json',
+						success : function(data) {
+console.log(data);
+							var html = '';
+							var i;
+							for (i = 0; i < data.length; i++) {
+
+								var date = new Date(data[i].updatedDate);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var from = from_yyyy + '-' + from_mm + '-'
+										+ from_dd;
+								var from_hours = date.getHours() > 12 ? date
+										.getHours() - 12 : date.getHours();
+								var from_am_pm = date.getHours() >= 12 ? "PM"
+										: "AM";
+								hours = from_hours < 10 ? "0" + from_hours
+										: from_hours;
+								var from_minutes = date.getMinutes() < 10 ? "0"
+										+ date.getMinutes() : date.getMinutes();
+								var from_seconds = date.getSeconds() < 10 ? "0"
+										+ date.getSeconds() : date.getSeconds();
+								updatedDate = from_dd + '/' + from_mm + '/'
+										+ from_yyyy + ' ' + from_hours + ":"
+										+ from_minutes + " " + from_am_pm;
+
+								var date = new Date(data[i].startDate);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var fromDate = from_dd + '-' + from_mm + '-'
+										+ from_yyyy;
+
+								var date = new Date(data[i].fromDate);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var fromDate = from_dd + '-' + from_mm + '-'
+										+ from_yyyy;
+								var date = new Date(data[i].toDate);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var toDate = from_dd + '-' + from_mm + '-'
+										+ from_yyyy;
+								
+
+								html += ' <tr>'
+										+
+// 																			'<td>'
+// 										+ '<a class="text-success mr-2 edit" data="' + data[i].id + '" href="javascript:;"><i class="dripicons-document-edit"></i></a>'
+// 										+
+
+// 										' <a class="text-danger mr-2 delete" data="' + data[i].id + '" href="javascript:;"><i class="dripicons-document-delete"></i></a>'
+// 										+ '</td>' +
+										//                         '<td>'+activityStatus+'</td>'+
+										'<td>'
+										+ data[i].name
+										+ '</td>'
+										+ '<td>'
+										+ fromDate
+										+ '</td>'
+										
+										+ '<td>'
+										+ toDate
+										+ '</td>'
+										
+										+ '<td>'
+										+ data[i].department
+										+ '</td>'
+										
+										+ '<td>'
+										+ data[i].leaveReason
+										+ '</td>'
+										
+										
+										+ ' </tr>';
+
+							}
+							$('#showData').html(html);
+
+							$('#datatable-buttons')
+									.DataTable({
+										destroy : true,
+										lengthChange : false,
+										sort : [ 2, "asc" ],
+										buttons : [ 'copy', 'excel', 'colvis' ]
+									})
+									.buttons()
+									.container()
+									.appendTo(
+											'#datatable-buttons_wrapper .col-md-6:eq(0)');
+
+						},
+						error : function() {
+							alert('could not get data from database');
+						}
+					});
+		}
+
+		$(document).on('submit', '#insert', function(e) {
+			e.preventDefault();
+			$.ajax({
+				type : "ajax",
+				method : "POST",
+				url : "/save-leave",
+				data : new FormData(this),
+				processData : false,
+				contentType : false,
+				cache : false,
+				beforeSend : function() {
+					$(".submit").prop('disabled', true);
+				},
+
+				success : function(data) {
+					$(".submit").prop('disabled', false);
+					$('#insert')[0].reset();
+					$('#addModal').modal('hide');
+					showAllLeaveList();
+				},
+				error : function() {
+					alert('could not insert');
+				}
+			});
+		});
+
+		$('#showData').on('click', '.edit', function() {
+			var id = $(this).attr('data');
+			$('#editModal').modal('show');
+
+			$.ajax({
+				type : 'ajax',
+				method : 'GET',
+				url : "/get-leave",
+				data : {
+					Id : id
+				},
+				async : false,
+				dataType : 'json',
+				success : function(data) {
+
+					$('input[id=leadId]').val(data.id);
+					$('input[id=name]').val(data.name);
+					$('input[id=email]').val(data.email);
+					
+					$('input[id=companyName]').val(data.companyName);
+					$('input[id=requirement]').val(data.requirement);
+					$('input[id=phone]').val(data.phone);
+					$('select[id=status]').val(data.status);
+				
+					$('textarea[id=address]').val(data.address);
+					$('textarea[id=comment]').val(data.comment);
+
+				},
+				error : function() {
+					alert('Could not Edit Data');
+				}
+			});
+		});
+
+		$(document).on('submit', '#update', function(e) {
+
+			e.preventDefault();
+
+			$.ajax({
+				url : "/update-leave",
+				method : 'POST',
+				data : new FormData(this),
+				contentType : false,
+				processData : false,
+				cache : false,
+				beforeSend : function() {
+
+					$(".submit").prop('disabled', true);
+				},
+
+				success : function(data) {
+					$(".submit").prop('disabled', false);
+					$('#update')[0].reset();
+					$('#editModal').modal('hide');
+
+					showAllLeaveList();
+
+				},
+				error : function() {
+					/*alert('could not insert');*/
+				}
+			});
+
+		});
+
+
+		$(document).on('click', '.delete', function() {
+			var Id = $(this).attr('data');
+			if (confirm('Are you want to delete this?'))
+				$.ajax({
+					method : "POST",
+					url : "/delete-leave",
+					data : {
+						Id : Id
+					},
+					success : function(data) {
+						showAllLeaveList();
+					},
+					error : function() {
+						alert('could not delete');
+					}
+				});
+		});
+	</script>
+</body>
+
+</html>

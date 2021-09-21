@@ -32,4 +32,21 @@ public class EmployeeService {
 
 	}
 
+	public Employee validateAdmin(String email, String password) {
+		String status = "Active";
+		return employeeRepository.findByEmailAndPasswordAndStatus(email, password, status);
+	}
+
+	public Boolean checkUserByEmailAndPasword(String email, String password) {
+		return employeeRepository.existsByEmailAndPassword(email, password);
+	}
+
+	public Employee getByEmail(String email) {
+		return employeeRepository.findByEmail(email);
+	}
+
+	public Employee getById(Long id) {
+		return employeeRepository.getById(id);
+
+	}
 }

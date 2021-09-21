@@ -7,5 +7,9 @@ import com.office.modelSuperAdmin.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+Employee findByEmail(String email);
+	
+	Boolean existsByEmailAndPassword(String email,String password);
 
+	Employee findByEmailAndPasswordAndStatus(String email, String password, String status);
 }

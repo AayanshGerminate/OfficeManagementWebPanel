@@ -18,25 +18,25 @@ public class FinancialController {
 	@Autowired
 	FinancialService financialService;
 
-	@RequestMapping("/admin/income-dashboard")
+	@RequestMapping("/income-dashboard")
 	public String incomedashboard(Model model, HttpSession session) {
 		if (session.getAttribute("sign-in-user") != null) {
 
 			return "admin/income-dashboard";
 		}
 
-		return "redirect:/admin/sign-in";
+		return "redirect:/sign-in";
 
 	}
 	
-	@RequestMapping("/admin/intern-income")
+	@RequestMapping("/intern-income")
 	public String internIncome(Model model, HttpSession session) {
 		if (session.getAttribute("sign-in-user") != null) {
 
-			return "admin/intern-income";
+			return "intern-income";
 		}
 
-		return "redirect:/admin/sign-in";
+		return "redirect:/sign-in";
 
 	}
 

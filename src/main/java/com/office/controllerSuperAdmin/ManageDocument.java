@@ -33,7 +33,7 @@ public class ManageDocument {
 
 	String uploadProductDirectory = System.getProperty("user.dir") + "/uploads/documents/";
 
-	@RequestMapping("/admin/manage-documents")
+	@RequestMapping("/manage-documents")
 	public String fetchBookProjects(Model model, HttpSession session) {
 		if (session.getAttribute("sign-in-user") != null) {
 
@@ -67,7 +67,7 @@ public class ManageDocument {
 			}
 
 		}
-		return "redirect:/admin/sign-in";
+		return "redirect:/sign-in";
 
 	}
 

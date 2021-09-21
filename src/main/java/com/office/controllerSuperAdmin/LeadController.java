@@ -22,12 +22,12 @@ public class LeadController {
 	@Autowired
 	LeadService leadService;
 
-	@RequestMapping("/admin/manage-lead")
+	@RequestMapping("/manage-lead")
 	public String fetchBookProjects(Model model, HttpSession session) {
 		if (session.getAttribute("sign-in-user") != null) {
 			return "admin/manage-lead";
 		}
-		return "redirect:/admin/sign-in";
+		return "redirect:/sign-in";
 
 	}
 

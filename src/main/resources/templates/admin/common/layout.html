@@ -72,7 +72,7 @@
 					<li class="dropdown notification-list">
 						<div class="dropdown notification-list nav-pro-img">
 							<a th:if="${session.profileImage1}" class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                	<img th:src="@{/admin/uploads/adminProfile/{profileImage}(profileImage=${session.profileImage1})}" alt="user" class="rounded-circle">
+                                	<img th:src="@{/admin/uploads/employee/profileImage/{profileImage}(profileImage=${session.profileImage1})}" alt="user" class="rounded-circle">
                             </a>
                             
                             <a th:unless="${session.profileImage1}" class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -84,10 +84,10 @@
 						<a class="dropdown-item" th:href="@{/admin/manage-admin-profile}"><i
 									class="mdi mdi-account-circle m-r-5"></i>Update Profile</a>
 						 <a 
-									class="dropdown-item d-block" th:href="@{/admin/manage-admin-password}"><i
+									class="dropdown-item d-block" th:href="@{/manage-admin-password}"><i
 									class="mdi mdi-account-circle m-r-5"></i>Change Password</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item text-danger" th:href="@{/admin/logout}"><i
+								<a class="dropdown-item text-danger" th:href="@{/logout}"><i
 									class="mdi mdi-power text-danger"></i> Logout</a>
 							</div>
 						</div>
@@ -112,28 +112,39 @@
 					<!-- Left Menu Start -->
 					<ul class="metismenu" id="side-menu">
 						
-						<li><a th:href="@{/admin/dashboard}" class="waves-effect">
+						<li><a th:href="@{/dashboard}" class="waves-effect">
 								<i class="fas fa-home"></i><span
 								class="badge badge-primary badge-pill float-right"></span> <span>
 									Dashboard </span>
 						</a></li>
-						<li><a th:href="@{/admin/manage-project}" class="waves-effect">
+						<li><a th:href="@{/manage-project}" class="waves-effect">
 								<i class="mdi mdi-google-maps"></i><span
 								class="badge badge-primary badge-pill float-right"></span> <span>
 									Manage Project</span>
 						</a></li>
 						
-						<li><a th:href="@{/admin/manage-todo-list}" class="waves-effect">
+						<li><a th:href="@{/manage-employee}" class="waves-effect">
+								<i class="mdi mdi-google-maps"></i><span
+								class="badge badge-primary badge-pill float-right"></span> <span>
+									Manage Employee</span>
+						</a></li>
+						<li><a th:href="@{/manage-leave}" class="waves-effect">
+								<i class="mdi mdi-google-maps"></i><span
+								class="badge badge-primary badge-pill float-right"></span> <span>
+									Request Leave</span>
+						</a></li>
+						
+						<li><a th:href="@{/manage-todo-list}" class="waves-effect">
 								<i class="mdi mdi-google-maps"></i><span
 								class="badge badge-primary badge-pill float-right"></span> <span>
 									Manage To Do List</span>
 						</a></li>
-						<li><a th:href="@{/admin/manage-documents}" class="waves-effect">
+						<li><a th:href="@{/manage-documents}" class="waves-effect">
 								<i class="mdi mdi-file"></i><span
 								class="badge badge-primary badge-pill float-right"></span> <span>
 									Documents</span>
 						</a></li>
-						<li><a th:href="@{/admin/manage-lead}" class="waves-effect">
+						<li><a th:href="@{/manage-lead}" class="waves-effect">
 								<i class="mdi mdi-file"></i><span
 								class="badge badge-primary badge-pill float-right"></span> <span>
 									Lead Details</span>
@@ -142,7 +153,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-table"></i><span>Financial <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="submenu collapse" aria-expanded="false">
                                     <li><a href="income-dashboard">Income</a></li>
-                                    <li><a href="email-read.html">Expense</a></li>
+                                    <li><a href="/manage-agpl-expense">Expense</a></li>
                                 </ul>
                             </li>
 						
