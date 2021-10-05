@@ -42,6 +42,9 @@ public class ToDoListController {
 	@ResponseBody
 	public JsonResponse saveProject(ToDoList toDoList, HttpSession session) {
 		// Project.setUpdatedName(session.getAttribute("sign-in-user").toString());
+
+		Long employeeId = (Long) session.getAttribute("sign-in-userId");
+		toDoList.setEmployeeId(employeeId);
 		toDoListService.saveToDoListt(toDoList);
 		JsonResponse resp = new JsonResponse();
 
@@ -61,7 +64,8 @@ public class ToDoListController {
 	@ResponseBody
 	public JsonResponse updateProject(ToDoList toDoList, HttpSession session) {
 		// Project.setUpdatedName(session.getAttribute("sign-in-user").toString());
-
+		Long employeeId = (Long) session.getAttribute("sign-in-userId");
+		toDoList.setEmployeeId(employeeId);
 		toDoListService.saveToDoListt(toDoList);
 
 		JsonResponse resp = new JsonResponse();

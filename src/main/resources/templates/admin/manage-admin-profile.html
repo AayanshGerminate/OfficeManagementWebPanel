@@ -38,8 +38,8 @@
 					
 							<div class="col-md-6 form-group mb-3 mt-3 text-center">
 								
-								 <img  th:if="${profileImage}" id="img" th:src="@{/admin/uploads/adminProfile/{profileImage}(profileImage=${profileImage})}" width="100" height="100" alt="NA" class="rounded-circle"/>
-								 <img  th:unless="${profileImage}" id="img" th:src="@{/admin/uploads/adminProfile/}" width="100" height="100" alt="NA" class="rounded-circle"/>
+								 <img  th:if="${profileImage}" id="img" th:src="@{/uploads/employee/profileImage/{profileImage}(profileImage=${profileImage})}" width="100" height="100" alt="NA" class="rounded-circle"/>
+								 <img  th:unless="${profileImage}" id="img" th:src="@{/grocery/assets/images/users/profile.png}" width="100" height="100" alt="NA" class="rounded-circle"/>
 								 
 							
 							</div>
@@ -110,7 +110,7 @@
 	        $.ajax({
 	            type: "ajax",
 	            method: "POST",
-	            url: "/admin/update-admin-profile",
+	            url: "/update-profile",
 	            data: new FormData(this),
 	            processData: false,
 	            contentType: false,
@@ -124,7 +124,7 @@
 	            	if(data.status != "False")
 	            	{
 	            		alert("Profile Updated")
-	            		window.location = "/admin/dashboard";
+	            		window.location = "/dashboard";
 	            	}
 	            	
 	           	

@@ -21,6 +21,8 @@ public class ToDoList {
 	private Long id;
 	private String title;
 	private String description;
+	private Long employeeId;
+	
 	
 	
 }

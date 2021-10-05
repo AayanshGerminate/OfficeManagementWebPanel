@@ -26,12 +26,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.office.modelSuperAdmin.Admin;
 import com.office.modelSuperAdmin.Employee;
 import com.office.serviceSuperAdmin.EmployeeService;
+import com.office.serviceSuperAdmin.ToDoListService;
 import com.office.webResponse.JsonResponse;
 
 @Controller
 public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
+	
+	@Autowired
+	ToDoListService toDoListService;
+	
 
 	String profileImageDirectory = System.getProperty("user.dir") + "/uploads/employee/profileImage/";
 
@@ -51,6 +56,8 @@ public class EmployeeController {
 	String panCardDirectory = System.getProperty("user.dir") + "/uploads/employee/panCard/";
 	String adharCardDirectory = System.getProperty("user.dir") + "/uploads/employee/adharCard/";
 	String passportDirectory = System.getProperty("user.dir") + "/uploads/employee/passport/";
+	
+	
 
 	@RequestMapping("/manage-employee")
 	public String fetchBookProjects(Model model, HttpSession session) {
@@ -658,6 +665,8 @@ public class EmployeeController {
 //			model.addAttribute("flatCount", flatCount);
 //			model.addAttribute("vendorCount", vendorCount);
 //				model.addAttribute("flatCount", String.format("%05d", flatCount));
+			
+			
 
 			return "admin/index";
 		}
@@ -794,7 +803,7 @@ public class EmployeeController {
 
 	}
 
-	@RequestMapping(value = "/update-admin-profile", method = RequestMethod.POST)
+	@RequestMapping(value = "/update-profile", method = RequestMethod.POST)
 	@ResponseBody
 	public JsonResponse updateAdminProfile(Admin user, BindingResult bindingResult,
 			@RequestParam("profileImage") MultipartFile profileImage, HttpSession session) {

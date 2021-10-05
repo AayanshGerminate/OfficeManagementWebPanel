@@ -72,7 +72,7 @@
 					<li class="dropdown notification-list">
 						<div class="dropdown notification-list nav-pro-img">
 							<a th:if="${session.profileImage1}" class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                	<img th:src="@{/admin/uploads/employee/profileImage/{profileImage}(profileImage=${session.profileImage1})}" alt="user" class="rounded-circle">
+                                	<img th:src="@{/uploads/employee/profileImage/{profileImage}(profileImage=${session.profileImage1})}" alt="user" class="rounded-circle">
                             </a>
                             
                             <a th:unless="${session.profileImage1}" class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -81,7 +81,7 @@
                         
 							<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
 								<!-- item-->
-						<a class="dropdown-item" th:href="@{/admin/manage-admin-profile}"><i
+						<a class="dropdown-item" th:href="@{/manage-employee-profile}"><i
 									class="mdi mdi-account-circle m-r-5"></i>Update Profile</a>
 						 <a 
 									class="dropdown-item d-block" th:href="@{/manage-admin-password}"><i
