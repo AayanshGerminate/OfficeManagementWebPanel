@@ -63,7 +63,7 @@
 															<th>Client Name</th>
 
 															<th>Updated Date</th>
-
+															<th>Project Progress</th>
 															<!-- <th>Country Name</th> -->
 
 
@@ -294,12 +294,19 @@
 													pattern="[a-zA-Z]{1}[a-zA-Z ]*$"
 													title="only alphabets and spaces allowed" required />
 											</div>
-											<div class="col-md-12 form-group mb-3">
+											<div class="col-md-6 form-group mb-3">
 												<label for="stateName">Client Credentials &
-													Description<</label>
+													Description</label>
 												<textarea class="form-control form-control-rounded"
 													id="description" name="description" cols="4" rows="4"
 													required></textarea>
+											</div>
+											<div class="col-md-6 form-group mb-3">
+												<label for="stateName">Project Progress</label>
+												<input type="range" class="form-range form-control"  min="0" max="100" onchange="projectRange()" id="projectRangeId" value='0' name="projectProgress" >
+												<div class="row pl-3">
+													<label class="text-lg h5" id="projectRangeLabel">0</label>
+												</div>
 											</div>
 											<div class="col-md-12 modal-footer mt-3">
 												<button class="btn btn-secondary" type="button"
@@ -431,6 +438,9 @@
 										+ '<td>'
 										+ updatedDate
 										+ '</td>'
+										+ '<td>'
+										+ ((data[i].projectProgress+"%") ? (data[i].projectProgress+"%") : '0')
+										+ '</td>'
 										+ ' </tr>';
 
 							}
@@ -511,6 +521,8 @@
 					$('input[id=remainingAmount]').val(data.remainingAmount);
 					$('input[id=serviceCharge]').val(data.serviceCharge);
 					$('input[id=clientName]').val(data.clientName);
+					$('input[id=projectRangeId]').val(data.projectProgress);
+					$('label[id=projectRangeLabel]').html(data.projectProgress+"%");
 					$('textarea[id=description]').val(data.description);
 
 				},
@@ -633,6 +645,13 @@
 					}
 				});
 		});
+		
+		function projectRange() {
+			var progressVal = $("#projectRangeId").val();
+			progressVal = progressVal+"%";
+			projectRangeLabel.innerHTML = progressVal;
+			
+		}
 	</script>
 </body>
 

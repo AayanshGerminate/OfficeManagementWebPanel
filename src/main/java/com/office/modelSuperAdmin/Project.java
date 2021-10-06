@@ -52,6 +52,6 @@ public class Project {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedDate = new Date();
 	private String status;
-
+	private Long projectProgress;
 
 }

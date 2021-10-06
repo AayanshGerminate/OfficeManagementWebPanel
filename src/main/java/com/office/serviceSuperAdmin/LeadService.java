@@ -6,26 +6,26 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.office.modelSuperAdmin.Lead;
+import com.office.modelSuperAdmin.Leads;
 import com.office.repositorySuperAdmin.LeadRepository;
 
 @Service
 public class LeadService {
+	
 	@Autowired
 	LeadRepository leadRepository;
 	
-	
-	public List<Lead> getAllLead() {
+	public List<Leads> getAllLead() {
 		return leadRepository.findAll();
 
 	}
 
-	public void saveLead(Lead lead) {
-		leadRepository.save(lead);
+	public void saveLead(Leads leads) {
+		leadRepository.save(leads);
 
 	}
 
-	public Optional<Lead> getLead(Long id) {
+	public Optional<Leads> getLead(Long id) {
 		return leadRepository.findById(id);
 
 	}

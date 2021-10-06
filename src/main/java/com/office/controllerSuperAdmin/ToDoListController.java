@@ -30,6 +30,17 @@ public class ToDoListController {
 		return "redirect:/sign-in";
 
 	}
+	
+	@RequestMapping("/to-do-list")
+	public String toDoList(Model model, HttpSession session) {
+		if (session.getAttribute("sign-in-user") != null) {
+			Long id = (Long)session.getAttribute("sign-in-userId");
+			model.addAttribute("todoList", toDoListService.getTop10ToDoListByEmployeeIdAndUpdatedDate(id));
+			return "admin/to-do-list";
+		}
+		return "redirect:/sign-in";
+
+	}
 
 	@RequestMapping(value = "/fetch-all-todo-list", method = RequestMethod.GET)
 	@ResponseBody
@@ -48,7 +59,7 @@ public class ToDoListController {
 		toDoListService.saveToDoListt(toDoList);
 		JsonResponse resp = new JsonResponse();
 
-		resp.setMessage("toDoList Inserted Successfully");
+		resp.setMessage("To do List Inserted Successfully");
 		resp.setStatus("True");
 		return resp;
 	}

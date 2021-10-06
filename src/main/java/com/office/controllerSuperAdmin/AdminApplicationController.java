@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.office.serviceSuperAdmin.AdminService;
 
 @Controller
-//@RequestMapping(value = "/admin")
 public class AdminApplicationController {
 	String adminProfileDirectotry = System.getProperty("user.dir") + "/uploads/adminProfile/";
 

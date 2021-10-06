@@ -166,7 +166,6 @@ public class EmployeeController {
 			HttpSession session) {
 
 		
-		System.out.println(profileImage.getOriginalFilename());
 		if (!profileImage.isEmpty() && profileImage!=null) {
 			String dateName = new SimpleDateFormat("yyyyMMddHHmm").format(new Date());
 			String originalFileName = dateName + "-"
@@ -658,16 +657,11 @@ public class EmployeeController {
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model, HttpSession session) {
 		if (session.getAttribute("sign-in-user") != null) {
-//			Long societyCount = societyService.getSocietyCount();
-//			Long flatCount = flatMasterService.getFlatCount();
-//			Long vendorCount = vendorService.getVendorCount();
-//			model.addAttribute("societyCount", societyCount);
-//			model.addAttribute("flatCount", flatCount);
-//			model.addAttribute("vendorCount", vendorCount);
-//				model.addAttribute("flatCount", String.format("%05d", flatCount));
 			
+			Long id = (Long)session.getAttribute("sign-in-userId");
 			
-
+			model.addAttribute("todoList", toDoListService.getTop3ToDoListByEmployeeIdAndUpdatedDate(id));
+			
 			return "admin/index";
 		}
 		return "redirect:/sign-in";
@@ -697,7 +691,7 @@ public class EmployeeController {
 				session.setAttribute("sign-in-user", user.getName());
 				session.setAttribute("sign-in-userId", user.getId());
 				session.setAttribute("sign-in-userEmail", user.getEmail());
-				session.setAttribute("admin-id", user.getId());
+//				session.setAttribute("admin-id", user.getId());
 
 				session.setAttribute("profileImage1", user.getProfileImage());
 

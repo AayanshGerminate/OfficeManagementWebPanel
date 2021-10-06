@@ -3074,12 +3074,12 @@ table.focus-on tbody tr.focused td {
 }
 
 .activity-feed .feed-item .date {
-  display: block;
-  position: relative;
+   position: relative;
   top: -5px;
   color: #8c96a3;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 20px;
+  font-weight : bold;
 }
 
 .activity-feed .feed-item .activity-text {

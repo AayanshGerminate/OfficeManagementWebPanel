@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.office.modelSuperAdmin.Lead;
+import com.office.modelSuperAdmin.Leads;
 import com.office.serviceSuperAdmin.LeadService;
 import com.office.webResponse.JsonResponse;
 
@@ -33,15 +33,15 @@ public class LeadController {
 
 	@RequestMapping(value = "/fetch-all-lead-list", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Lead> ProjectList() {
+	public List<Leads> LeadList() {
 		return leadService.getAllLead();
 	}
 
 	@RequestMapping(value = "/save-lead", method = RequestMethod.POST)
 	@ResponseBody
-	public JsonResponse saveLead(Lead lead, HttpSession session) {
+	public JsonResponse saveLead(Leads leads, HttpSession session) {
 		// Project.setUpdatedName(session.getAttribute("sign-in-user").toString());
-		leadService.saveLead(lead);
+		leadService.saveLead(leads);
 		JsonResponse resp = new JsonResponse();
 
 		resp.setMessage("Lead Inserted Successfully");
@@ -51,17 +51,17 @@ public class LeadController {
 
 	@RequestMapping("/get-lead")
 	@ResponseBody
-	public Optional<Lead> getLead(Long Id) {
+	public Optional<Leads> getLead(Long Id) {
 		return leadService.getLead(Id);
 
 	}
 
 	@RequestMapping(value = "/update-lead", method = RequestMethod.POST)
 	@ResponseBody
-	public JsonResponse updateLead(Lead lead, HttpSession session) {
+	public JsonResponse updateLead(Leads leads, HttpSession session) {
 		// Project.setUpdatedName(session.getAttribute("sign-in-user").toString());
 
-		leadService.saveLead(lead);
+		leadService.saveLead(leads);
 
 		JsonResponse resp = new JsonResponse();
 		resp.setMessage("Lead Updated Successfully");

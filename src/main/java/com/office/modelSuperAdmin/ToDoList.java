@@ -1,9 +1,17 @@
 package com.office.modelSuperAdmin;
 
+
+
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +30,9 @@ public class ToDoList {
 	private String title;
 	private String description;
 	private Long employeeId;
-	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date updatedDate = new Date();
 	
 	
 }
