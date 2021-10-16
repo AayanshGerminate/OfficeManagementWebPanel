@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.office.modelSuperAdmin.Employee;
 import com.office.repositorySuperAdmin.EmployeeRepository;
+import com.office.webResponse.EmployeeResponse;
 
 @Service
 public class EmployeeService {
@@ -48,5 +49,9 @@ public class EmployeeService {
 	public Employee getById(Long id) {
 		return employeeRepository.getById(id);
 
+	}
+	
+	public List<EmployeeResponse> getAllEmployeeIdAndName(){
+	 return employeeRepository.getAllEmployeeIdAndName();
 	}
 }

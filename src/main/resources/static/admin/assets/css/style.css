@@ -683,13 +683,18 @@ dt {
 .side-menu {
   width: 240px;
   z-index: 10;
-  background: #2b3a4a;
+  background: linear-gradient(to right, #00b9da 10%, #d5578d) !important;
   bottom: 0;
   margin-top: 0;
   padding-bottom: 30px;
   position: fixed;
   top: 70px;
 }
+.gradient
+{
+	background: linear-gradient(to right, #00b9da 10%, #d5578d) !important;
+}
+
 
 .side-menu .waves-effect .waves-ripple {
   background-color: rgba(43, 58, 74, 0.4);

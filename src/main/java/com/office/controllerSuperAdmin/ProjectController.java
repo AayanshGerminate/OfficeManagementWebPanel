@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.office.modelSuperAdmin.Project;
 import com.office.serviceSuperAdmin.ProjectService;
 import com.office.webResponse.JsonResponse;
+import com.office.webResponse.ProjectResponse;
 
 @Controller
 public class ProjectController {
@@ -79,10 +80,10 @@ public class ProjectController {
 		return resp;
 	}
 
-//	@RequestMapping(value = "/fetch-all-book-Projects", method = RequestMethod.GET)
-//	@ResponseBody
-//	public List<BookProjectResponse> allProjectList() {
-//		return ProjectService.findAllProjects();
-//	}
+	@RequestMapping(value = "/fetch-all-project-id-and-name", method = RequestMethod.GET)
+	@ResponseBody
+	public List<ProjectResponse> getProjectListIdAndName() {
+		return projectService.getAllProjectIdAndName();
+	}
 
 }

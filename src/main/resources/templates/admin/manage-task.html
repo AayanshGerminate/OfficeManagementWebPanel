@@ -10,8 +10,7 @@
 	<!-- Begin page -->
 	<div id="wrapper">
 		<!-- Top Bar Start -->
-		<div class="topbar"
-			th:replace="admin/common/layout :: admin-navbar"></div>
+		<div class="topbar" th:replace="admin/common/layout :: admin-navbar"></div>
 		<!-- Top Bar End -->
 		<!-- ========== Left Sidebar Start ========== -->
 		<div class="left side-menu"
@@ -22,58 +21,537 @@
 		<!-- ============================================================== -->
 		<div class="content-page">
 			<!-- Start content -->
-			<!-- test -->
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-sm-12">
+							<!-- test -->
 							<div class="page-title-box">
-								<h4 class="page-title">Dashboard</h4>
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item active">Welcome to Office Management Adminstrator
-										 Dashboard</li>
-								</ol>
-								
+								<div class="card m-b-20">
+									<div class="card-body">
+										<div class="row ">
+											<div class="col-md-12 m-b-15">
+												<h4 class="mt-0 header-title">
+													Task Details
+													<button class="btn btn-primary btn-md m-1" type="button"
+														data-toggle="modal" data-target="#addModal"
+														style="float: right;">Assign Task</button>
+
+												</h4>
+											</div>
+											<div class="col-md-12 table-responsive">
+
+												<table class=" table table-striped dt-responsive nowrap"
+													id="datatable-buttons"
+													style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+													<thead>
+														<tr>
+															<th>Action</th>
+		                                                    <th>Task Name</th>            
+															<th>Assigned To</th>
+															<th>Date</th>
+															<th>Scheduled Task</th>
+															<th>UnScheduled Task</th>
+															<th>Scheduled Time</th>
+															<th>Actual Time</th>
+															<th>Priority</th>
+															<th>Project Status</th>
+															<th>Updated Date</th>
+														</tr>
+													</thead>
+													<tbody id="showData">
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-							
+
 						</div>
 					</div>
-					<!-- end row -->
-				<div class="row">
-					
-					<div class="col-sm-12">
-<!-- 						<div class="card m-b-20" > -->
-<!--                            <div class="card-body"> -->
-<!--                                <h4 class="mt-0 header-title mb-4"><strong>TO-DO</strong></h4> -->
+					<div class="modal fade " id="addModal" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div
+							class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalCenterTitle">Assign Task Details</h5>
+									<button class="close" type="button" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form id="insert">
+										<div class="row">
+											<div class="col-md-4 form-group mb-3" id="projectDivInsert">
+												<label for="projecName">Project Name</label> 
+												<select name="projectId" id="project" class="form-control" required>
+													
+												</select>
+											</div>
+											<div class="col-md-4 form-group mb-3" id="empDivInsert">
+												<label for="employeeName">Assigned To</label> 
+												<select name="employeeId" class="form-control" id="employee" required>
+													
+												</select>
+											</div>
+											<div class="col-md-4 form-group mb-3" id="statusDivInsert">
+												<label for="status"> Status</label> 
+												<select
+													class="form-control form-control-rounded" id="status" name="status"
+													>
+													<option value="">Select Status</option>
+													<option value="Pending">Pending</option>
+													<option value="In-Progress">In-Progress</option>
+													<option value="Hold">Hold</option>
+													<option value="Complete">Complete</option>
 
-<!--                                <ol class="activity-feed mb-0" >                                            -->
-<!--                                    <li class="feed-item"th:each="todo : ${todoList}"> -->
-<!--                                        <div class="feed-item-list"> -->
-<!--                                            <span class="date" style="font:bold!important;" th:utext="${todo.title}"></span> -->
-<!--                                            <span class="activity-text" th:utext="${todo.description}"></span> -->
-<!--                                        </div> -->
-<!--                                    </li>                                               -->
-<!--                                </ol> -->
+												</select>
+											</div>	
+											<div class="col-md-3 form-group mb-3" id="dateDivInsert">
+												<label for="Date">Date</label> 
+												<input type="date" class="form-control" id="date" name="date" required >
+											</div>	
+											<div class="col-md-3 form-group mb-3" id="priorityDivInsert">
+                                                <label for="stateName">Priority</label>
+                                                <select
+													class="form-control form-control-rounded" id="priority" name="priority"
+													>
+													<option value="">Select Priority</option>
+													<option value="High">High</option>
+													<option value="Medium">Medium</option>
+													<option value="Low">Low</option>
+												</select>
+                                            </div>
+											<div class="col-md-3 form-group mb-3" id="scheduledTimeDivInsert">
+												<label for="Date">Scheduled Time </label> 
+												<input type="time" class="form-control" id="scheduledTime" name="scheduledTime"  >
+											</div>
+											<div class="col-md-3 form-group mb-3" id="actualTimeDivInsert">
+												<label for="Date">Actual Time </label> 
+												<input type="time" class="form-control" id="actualTime" name="actualTime" required >
+											</div>
+											 <div class="col-md-6 form-group mb-3" id="scheduledTaskDivInsert">
+                                                <label for="stateName">Scheduled Task </label>
+                                                <textarea class="form-control form-control-rounded" cols="4" rows="4" id="scheduledTask" name="scheduledTask"  required ></textarea>
+                                            </div>
+                                             <div class="col-md-6 form-group mb-3" id="unScheduledTaskDivInsert">
+                                                <label for="stateName">UnScheduled Task </label>
+                                                <textarea class="form-control form-control-rounded" id="unScheduledTask" cols="4" rows="4" name="unScheduledTask"  required ></textarea>
+                                            </div>
+										
+																	
+											<div class="col-md-12 modal-footer mt-3">
+												<button class="btn btn-secondary" type="button"
+													data-dismiss="modal">Close</button>
+												<input class="btn btn-primary ml-2 submit" type="submit"
+													value="Save">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade " id="editModal" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div
+							class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalCenterTitle">Edit Task Details</h5>
+									<button class="close" type="button" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form id="update">
+										<div class="row">
+										<input type="hidden" id="id" name="id">
+											<div class="col-md-4 form-group mb-3" id="projectDivEdit">
+												<label for="projecName">Project Name</label> 
+												<select name="projectName" id="projectId" class="form-control" required>
+													<option>Select Project</option>
+													<option>Other</option>
+												</select>
+											</div>
+											<div class="col-md-4 form-group mb-3" id="empDivEdit">
+												<label for="employeeName">Assigned To</label> 
+												<select name="employeeName" class="form-control" id="employeeId" required>
+													<option>Select Employee</option>
+												</select>
+											</div>
+											<div class="col-md-4 form-group mb-3" id="statusDivEdit">
+												<label for="status"> Status</label> 
+												<select
+													class="form-control form-control-rounded" id="statusId" name="status"
+													>
+													<option value="">Select Status</option>
+													<option value="Pending">Pending</option>
+													<option value="In-Progress">In-Progress</option>
+													<option value="Hold">Hold</option>
+													<option value="Complete">Complete</option>
 
-<!--                            </div> -->
-<!-- 	                    </div> -->
+												</select>
+											</div>	
+											<div class="col-md-3 form-group mb-3" id="dateDivEdit">
+												<label for="Date">Date</label> 
+												<input type="date" class="form-control" id="dateId" name="date" required >
+											</div>	
+											<div class="col-md-3 form-group mb-3" id="priorityDivEdit">
+                                                <label for="stateName">Priority</label>
+                                                <select
+													class="form-control form-control-rounded" id="priorityId" name="priority"
+													required>
+													<option value="">Select Priority</option>
+													<option value="High">High</option>
+													<option value="Medium">Medium</option>
+													<option value="Low">Low</option>
+												</select>
+                                            </div>
+											<div class="col-md-3 form-group mb-3" id="scheduledTimeDivEdit">
+												<label for="Date">Scheduled Time </label> 
+												<input type="time" class="form-control" id="scheduledTimeId" name="scheduledTime" required >
+											</div>
+											<div class="col-md-3 form-group mb-3" id="actualTimeDivInsert">
+												<label for="Date">Actual Time </label> 
+												<input type="time" class="form-control" id="actualTimeId" name="actualTime" required >
+											</div>
+											 <div class="col-md-6 form-group mb-3" id="scheduledTaskDivEdit">
+                                                <label for="stateName">Scheduled Task </label>
+                                                <textarea class="form-control form-control-rounded" cols="4" rows="4" id="scheduledTaskId" name="scheduledTask"  required ></textarea>
+                                            </div>
+                                             <div class="col-md-6 form-group mb-3" id="unScheduledTaskDivEdit">
+                                                <label for="stateName">UnScheduled Task </label>
+                                                <textarea class="form-control form-control-rounded" id="unScheduledTaskId" cols="4" rows="4" name="unScheduledTask"  required ></textarea>
+                                            </div>
+										
+																	
+											<div class="col-md-12 modal-footer mt-3">
+												<button class="btn btn-secondary" type="button"
+													data-dismiss="modal">Close</button>
+												<input class="btn btn-primary ml-2 submit" type="submit"
+													value="Save">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-					<!-- end row -->
-
-				</div>
-				<!-- container-fluid -->
 			</div>
-			<!-- content -->
-
 		</div>
-		<!-- ============================================================== -->
-		<!-- End Right content here -->
-		<!-- ============================================================== -->
 	</div>
-	<!-- END wrapper -->
-	<!-- jQuery  -->
 	<div th:replace="admin/common/layout :: admin-footer-link"></div>
+	<script type="text/javascript">
+		$('document').ready(function() {
+			   CKEDITOR.replace('scheduledTask');
+		       CKEDITOR.replace('unScheduledTask');
+		       showAllTaskList();
+		       showEmployeeList();
+		       showProjectList();
+		});
+
+		function showAllTaskList() {
+			$('#datatable-buttons').DataTable().destroy();
+			$
+					.ajax({
+
+						type : "ajax",
+						dataType : 'json',
+						url : "/fetch-all-task-list-by-emp-id",
+						method : 'GET',
+						async : false,
+						dataType : 'json',
+						success : function(data) {
+
+							var html = '';
+							var i;
+							for (i = 0; i < data.length; i++) {
+
+								if(data[i].updatedDate != null)
+								{
+									
+							
+								var date = new Date(data[i].updatedDate);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var from = from_yyyy + '-' + from_mm + '-'
+										+ from_dd;
+								var from_hours = date.getHours() > 12 ? date
+										.getHours() - 12 : date.getHours();
+								var from_am_pm = date.getHours() >= 12 ? "PM"
+										: "AM";
+								hours = from_hours < 10 ? "0" + from_hours
+										: from_hours;
+								var from_minutes = date.getMinutes() < 10 ? "0"
+										+ date.getMinutes() : date.getMinutes();
+								var from_seconds = date.getSeconds() < 10 ? "0"
+										+ date.getSeconds() : date.getSeconds();
+								updatedDate = from_dd + '/' + from_mm + '/'
+										+ from_yyyy + ' ' + from_hours + ":"
+										+ from_minutes + " " + from_am_pm;
+
+								var date = new Date(data[i].startDate);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var fromDate = from_dd + '-' + from_mm + '-'
+										+ from_yyyy;
+								}
+								else
+									updatedDate = '-';
+								
+								if(data[i].date !=null)
+								{							
+								var date = new Date(data[i].date);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var toDate = from_dd + '-' + from_mm + '-'
+										+ from_yyyy;
+								var date = new Date(data[i].date);
+								var from_dd = date.getDate();
+								var from_mm = date.getMonth() + 1;
+								var from_yyyy = date.getFullYear();
+								var Date1 = from_dd + '-' + from_mm + '-'
+										+ from_yyyy;
+								}
+								else
+									var Date1 = '-';
+								
+		
+								
+								html += ' <tr>'
+										+
+
+										'<td>'
+										+ '<a class="text-success mr-2 edit" data="' + data[i].id + '" href="javascript:;"><i class="dripicons-document-edit"></i></a>'
+										+
+
+										' <a class="text-danger mr-2 delete" data="' + data[i].id + '" href="javascript:;"><i class="dripicons-document-delete"></i></a>'
+										+ '</td>' +
+										'<td>'
+										+ data[i].projectName
+										+ '</td>'
+										+ '<td>'
+										+ data[i].employeeName
+										+ '</td>'
+										+ '<td>'
+										+ Date1
+										+ '</td>'									
+										+ '<td>'
+										+ data[i].scheduledTask
+										+ '</td>'
+										+ '<td>'
+										+ data[i].unScheduledTask
+										+ '</td>'
+										+ '<td>'
+										+ data[i].scheduledTime
+										+ '</td>'
+										+ '<td>'
+										+ data[i].actualTime
+										+ '</td>'
+										+ '<td>'
+										+ data[i].priority
+										+ '</td>'
+										+ '<td>'
+										+ data[i].status
+										+ '</td>'
+										+ '<td>'
+										+ updatedDate
+										+ '</td>'
+										+ ' </tr>';
+
+							}
+							$('#showData').html(html);
+
+							$('#datatable-buttons')
+									.DataTable({
+										destroy : true,
+										lengthChange : false,
+										sort : [ 2, "asc" ],
+										buttons : [ 'copy', 'excel', 'colvis' ]
+									})
+									.buttons()
+									.container()
+									.appendTo(
+											'#datatable-buttons_wrapper .col-md-6:eq(0)');
+
+						},
+						error : function() {
+							alert('could not get data from database');
+						}
+					});
+		}
+
+		$(document).on('submit', '#insert', function(e) {
+			e.preventDefault();
+			$.ajax({
+				type : "ajax",
+				method : "POST",
+				url : "/save-task",
+				data : new FormData(this),
+				processData : false,
+				contentType : false,
+				cache : false,
+				beforeSend : function() {
+					$(".submit").prop('disabled', true);
+				},
+
+				success : function(data) {
+					$(".submit").prop('disabled', false);
+					$('#insert')[0].reset();
+					$('#addModal').modal('hide');
+					showAllTaskList();
+				},
+				error : function() {
+					alert('could not insert');
+				}
+			});
+		});
+
+		$('#showData').on('click', '.edit', function() {
+			var id = $(this).attr('data');
+			$('#editModal').modal('show');
+		
+			$.ajax({
+				type : 'ajax',
+				method : 'GET',
+				url : "/get-task",
+				data : {
+					id : id
+				},
+				async : false,
+				dataType : 'json',
+				success : function(data) {
+			
+					$('input[id=id]').val(data.id);
+					$('select[id=projectId]').val(data.projectId);
+					$('select[id=employeeId]').val(data.employeeId);
+					$('input[id=dateId]').val(data.date);
+					$('input[id=scheduledTaskId]').val(data.scheduledTask);
+					$('select[id=statusId]').val(data.status);
+					$('input[id=unScheduledTaskId]').val(data.UnScheduledTask);
+					$('input[id=actualTimeId]').val(data.actualTime);
+					$('input[id=priorityId]').val(data.priority);
+				},
+				error : function() {
+					alert('Could not Edit Data');
+				}
+			});
+		});
+
+		$(document).on('submit', '#update', function(e) {
+
+			e.preventDefault();
+
+			$.ajax({
+				url : "/update-task",
+				method : 'POST',
+				data : new FormData(this),
+				contentType : false,
+				processData : false,
+				cache : false,
+				beforeSend : function() {
+
+					$(".submit").prop('disabled', true);
+				},
+
+				success : function(data) {
+					$(".submit").prop('disabled', false);
+					$('#update')[0].reset();
+					$('#editModal').modal('hide');
+
+					showAllTaskList();
+
+				},
+				error : function() {
+					/*alert('could not insert');*/
+				}
+			});
+
+		});
+		
+		function showEmployeeList() {
+	        $.ajax({
+	            type: "ajax",
+	            dataType: 'json',
+	            url: "/fetch-all-employee-id-and-name",
+	            method: 'GET',
+	            async: false,
+	            dataType: 'json',
+	            success: function(data) {
+	                
+	                var html = '<option value="">Select Employee</option>';
+	                var len = data.length;
+	                for (var i = 0; i < len; i++) {
+	                    html += '<option value="' + data[i].id + '">' +
+	                        data[i].employeeName + '</option>';
+	                }
+	           
+	                $('#employee').html(html);
+	               
+	               
+	               
+	            },
+	            error: function() {
+	                alert('could not get data from database');
+	            }
+	        });
+	    }
+		
+		function showProjectList() {
+	        $.ajax({
+	            type: "ajax",
+	            dataType: 'json',
+	            url: "/fetch-all-project-id-and-name",
+	            method: 'GET',
+	            async: false,
+	            dataType: 'json',
+	            success: function(data) {
+	                
+	                var html = '<option value="">Select Project</option>';
+	                var len = data.length;
+	                for (var i = 0; i < len; i++) {
+	                    html += '<option value="' + data[i].id + '">' +
+	                        data[i].projectName + '</option>';
+	                }
+	                html += '<option value="Other">Other</option>';
+	                $('#project').html(html);
+	                
+	               
+	               
+	            },
+	            error: function() {
+	                alert('could not get data from database');
+	            }
+	        });
+		}
+	   
+		$('#selectGstAmount').on(
+				"keyup",
+				function() {
+					var productCost = $('#selectProjectCost').val();
+
+					var gstAmount = $('#selectGstAmount').val();
+
+					if (productCost) {
+						var totalCost = parseFloat(productCost)
+								+ parseFloat(gstAmount);
+
+						$("#selectTotalPrice").val(totalCost.toFixed(2));
+					}
+
+				});
+
+					
+			</script>
 </body>
 
 </html>

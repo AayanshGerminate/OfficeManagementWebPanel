@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.office.modelSuperAdmin.Project;
 import com.office.repositorySuperAdmin.ProjectRepository;
+import com.office.webResponse.ProjectResponse;
 
 @Service
 public class ProjectService {
@@ -33,5 +34,13 @@ public class ProjectService {
 	public void deleteProject(Long id) {
 		projectRepository.deleteById(id);
 	}
+	
+
+	public List<ProjectResponse> getAllProjectIdAndName() {
+		return projectRepository.getAllProjectIdAndName();
+
+	}
+	
+	
 
 }

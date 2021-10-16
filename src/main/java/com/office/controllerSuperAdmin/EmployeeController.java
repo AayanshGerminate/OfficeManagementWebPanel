@@ -27,6 +27,7 @@ import com.office.modelSuperAdmin.Admin;
 import com.office.modelSuperAdmin.Employee;
 import com.office.serviceSuperAdmin.EmployeeService;
 import com.office.serviceSuperAdmin.ToDoListService;
+import com.office.webResponse.EmployeeResponse;
 import com.office.webResponse.JsonResponse;
 
 @Controller
@@ -143,6 +144,13 @@ public class EmployeeController {
 	@ResponseBody
 	public List<Employee> employeeList() {
 		return employeeService.getEmployeeList();
+
+	}
+	
+	@RequestMapping(value = "/fetch-all-employee-id-and-name", method = RequestMethod.GET)
+	@ResponseBody
+	public List<EmployeeResponse> getEmployeeIdAndName() {
+		return employeeService.getAllEmployeeIdAndName();
 
 	}
 
@@ -399,8 +407,7 @@ public class EmployeeController {
 	@RequestMapping("/get-employee")
 	@ResponseBody
 	public Employee getEmployee(Long Id) {
-		System.out.println(employeeService.getEmployee(Id));
-
+	
 		return employeeService.getEmployee(Id);
 
 	}
